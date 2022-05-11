@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "all": "^0.0.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.1.10",
+    "morgan": "^1.10.0",
+    "session": "^0.1.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "warhandler",
+  "description": "Project 3",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrismcclarin/WarHandler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrismcclarin/WarHandler/issues"
+  },
+  "homepage": "https://github.com/chrismcclarin/WarHandler#readme"
+}
