@@ -28,13 +28,13 @@ db
 .on('error', (err) => console.log('MongoDB Error: ' + err.message))
 
 // SET UP CREATE UNIT MODEL
-const bgSchema = new mongoose.Schema({
+const BGSchema = new mongoose.Schema({
     Name: String,
     Players: String,
     Score: Number,
 }, { timestamps: true });
 
-const bg = mongoose.model('BG', bgSchema);
+const bg = mongoose.model('BG', BGSchema);
 
 
 
