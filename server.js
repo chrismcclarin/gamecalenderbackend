@@ -6,7 +6,6 @@ const cors = require ('cors');
 
 const morgan = require ('morgan')
 const mongoose = require('mongoose');
-const session = require('express-session');
 
 // EXPRESS APP
 const app = express();
@@ -29,31 +28,13 @@ db
 .on('error', (err) => console.log('MongoDB Error: ' + err.message))
 
 // SET UP CREATE UNIT MODEL
-const unitsSchema = new mongoose.Schema({
+const bgSchema = new mongoose.Schema({
     Name: String,
-    Movement: String,
-    WeaponSkill: String,
-    BallisticSkill: String,
-    Strength: String,
-    Toughness: String,
-    Wounds: String,
-    Attacks: String,
-    Leadership: String,
-    Save: String,
+    Players: String,
+    Score: Number,
 }, { timestamps: true });
 
-const Units = mongoose.model('Units', unitsSchema);
-
-
-// IMPORT JSON FILES
-const Abilities = require('./CSV/Abilities.json');
-const Datasheets_abilities = require('./CSV/Datasheets_abilities.json');
-const Datasheets_damage = require('./CSV/Datasheets_damage.json');
-const Datasheets_keywords = require('./CSV/Datasheets_keywords.json');
-const Datasheets_models = require('./CSV/Datasheets_models.json');
-const Datasheets = require('./CSV/Datasheets');
-const Factions = require('./CSV/Factions');
-
+const bg = mongoose.model('bg', bgSchema);
 
 
 
@@ -67,98 +48,46 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-    session({
-        secret: process.env.SECRET,
-        resave: false,
-        saveUninitialized: false
-    })
-)
-
 //Routes 
 
 const routesController = require ('./controllers/controllers.js');
 
-const userController = require ('./controllers/users');
-
-const sessionsController = require('./controllers/sessions');
-
 app.use('/', routesController);
 
-app.use('/users', userController);
 
-app.use('/sessions', sessionsController);
-
-
-// ROUTE FOR RETRIEVING ABILITIES INFO
-app.get('/Abilities', (req, res) => {
-    res.json(Abilities);
-});
-
-// ROUTE FOR RETRIEVING DATASHEETS_ABILITIES
-app.get('/DatasheetsAbilities', (req, res) => {
-    res.json(Datasheets_abilities);
-});
-
-// ROUTE FOR RETRIEVING DATASHEETS_DAMAGE
-app.get('/DatasheetsDamage', (req, res) => {
-    res.json(Datasheets_damage);
-});
-
-// ROUTE FOR RETRIEVING DATASHEETS_KEYWORDS
-app.get('/DatasheetsKeywords', (req, res) => {
-    res.json(Datasheets_keywords);
-});
-
-// ROUTE FOR RETRIEVING DATASHEETS_MODELS
-app.get('/DatasheetsModels', (req, res) => {
-    res.json(Datasheets_models);
-});
-
-// ROUTE FOR RETRIEVING DATASHEETS
-app.get('/Datasheets', (req, res) => {
-    res.json(Datasheets);
-});
-
-// ROUTE FOR RETRIEVING FACTIONS
-app.get('/Factions', (req, res) => {
-    res.json(Factions);
-});
-
-
-// UNITS INDEX ROUTE
-app.get('/units', async (req, res) => {
+// INDEX ROUTE
+app.get('/bg', async (req, res) => {
     try {
-        // SEND ALL UNITS
-        res.json(await Units.find({}));
+        // SEND ALL
+        res.json(await bg.find({}));
     } catch (error) {
         res.status(400).json(error);
     }
 });
 
 
-// UNITS CREATE ROUTE
-app.post('/units', async (req, res) => {
+// CREATE ROUTE
+app.post('/bg', async (req, res) => {
     try {
-        res.json(await Units.create(req.body));
+        res.json(await bg.create(req.body));
     } catch (error) {
         res.status(400).json(error);
     }
 });
 
-// UNITS UPDATE ROUTE
-app.put('/units/:id', async (req, res) => {
+// UPDATE ROUTE
+app.put('/bg/:id', async (req, res) => {
     try {
-        res.json(await Units.findByIdAndUpdate(req.params.id, req.body, { new: true }))
+        res.json(await bg.findByIdAndUpdate(req.params.id, req.body, { new: true }))
     } catch (error) {
         res.status(400).json(error);
     }
 });
 
-// UNITS DELETE ROUTE
-app.delete('/units/:id', async (req, res) => {
+// DELETE ROUTE
+app.delete('/bg/:id', async (req, res) => {
     try {
-        res.json(await Units.findByIdAndDelete(req.params.id));
+        res.json(await bg.findByIdAndDelete(req.params.id));
     } catch (error) {
         res.status(400).json(error);
     }
