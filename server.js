@@ -34,7 +34,7 @@ const bgSchema = new mongoose.Schema({
     Score: Number,
 }, { timestamps: true });
 
-const bg = mongoose.model('bg', bgSchema);
+const bg = mongoose.model('BG', bgSchema);
 
 
 
