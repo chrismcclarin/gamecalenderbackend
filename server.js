@@ -30,14 +30,12 @@ db
 // SET UP CREATE UNIT MODEL
 const BGSchema = new mongoose.Schema({
     Name: String,
-    Players: [{
-        Player1: String,
-        Player2: String,
-        Player3: String,
-        Player4: String,
-        Player5: String,
-        Player6: String,
-    }],
+    Player1: String,
+    Player2: String,
+    Player3: String,
+    Player4: String,
+    Player5: String,
+    Player6: String,
     Winner: String,
     url: String,
     Date: Date
