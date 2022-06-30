@@ -38,7 +38,7 @@ const BGSchema = new mongoose.Schema({
     Player6: String,
     Winner: String,
     url: String,
-    Date: Date
+    dated: String
 }, { timestamps: true });
 
 const bg = mongoose.model('BG', BGSchema);
