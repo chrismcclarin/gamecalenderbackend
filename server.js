@@ -30,18 +30,64 @@ db
 // SET UP CREATE UNIT MODEL
 const BGSchema = new mongoose.Schema({
     Name: String,
-    Player1: String,
-    Player2: String,
-    Player3: String,
-    Player4: String,
-    Player5: String,
-    Player6: String,
-    Winner: String,
+    Players: [
+        {
+            Player: String,
+            Winner: Boolean,
+            New: Boolean,
+            Score: Number,
+            Faction: String,
+            Picked: Boolean
+        },
+        {
+            Player: String,
+            Winner: Boolean,
+            New: Boolean,
+            Score: Number,
+            Faction: String,
+            Picked: Boolean
+        },
+        {
+            Player: String,
+            Winner: Boolean,
+            New: Boolean,
+            Score: Number,
+            Faction: String,
+            Picked: Boolean
+        },
+        {
+            Player: String,
+            Winner: Boolean,
+            New: Boolean,
+            Score: Number,
+            Faction: String,
+            Picked: Boolean
+        },
+        {
+            Player: String,
+            Winner: Boolean,
+            New: Boolean,
+            Score: Number,
+            Faction: String,
+            Picked: Boolean
+        },
+        {
+            Player: String,
+            Winner: Boolean,
+            New: Boolean,
+            Score: Number,
+            Faction: String,
+            Picked: Boolean
+        },
+    ],
+    Groupwin: Boolean,
+    GameComments: String,
     url: String,
+    theme: String,
     dated: String
 }, { timestamps: true });
 
-const bg = mongoose.model('BG', BGSchema);
+const bg = mongoose.model('bg', BGSchema);
 
 
 
