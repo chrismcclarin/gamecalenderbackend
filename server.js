@@ -87,7 +87,7 @@ const BGSchema = new mongoose.Schema({
     dated: String
 }, { timestamps: true });
 
-const bg = mongoose.model('bg', BGSchema);
+const bg = mongoose.model('boardgametest', BGSchema);
 
 
 
