@@ -1,5 +1,5 @@
 //DEPENDENCIES
-
+var parseString = require('xml2js').parseString;
 const express = require ('express');
 
 const cors = require ('cors');
@@ -84,12 +84,11 @@ const BGSchema = new mongoose.Schema({
     GameComments: String,
     url: String,
     theme: String,
-    dated: String
+    startDate: String,
+    Length: Number,
 }, { timestamps: true });
 
-const bg = mongoose.model('boardgametest', BGSchema);
-
-
+const bg = mongoose.model('bg', BGSchema);
 
 //Middleware
 
@@ -107,10 +106,23 @@ const routesController = require ('./controllers/controllers.js');
 
 app.use('/', routesController);
 
+//Possible way to grab data from BGG.com, but currently ineffectual
+// app.get('/xml', async (req, res) => {
+//     console.log(req.body)
+//     return fetch('https://api.geekdo.com/xmlapi/search?search=wingspan')
+//         .then(response => response.text())
+//         .then(str => parseString(str, function (err, result) {
+//             // console.log(result.boardgames.boardgame[0].name[0]._)
+//             return res.json(result);
+
+//         }))
+// });
+
 
 // INDEX ROUTE
 app.get('/bg', async (req, res) => {
     try {
+
         // SEND ALL
         res.json(await bg.find({}));
     } catch (error) {
@@ -150,8 +162,6 @@ app.delete('/bg/:id', async (req, res) => {
 //listen for PORT
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))
-
-
 
 
 
