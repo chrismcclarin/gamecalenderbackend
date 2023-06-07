@@ -48,7 +48,9 @@ const mostcountBGorg = require ('./organizers/mosttoleastcountBG');
 const winnerorg = require ('./organizers/winner');
 const playerorg = require ('./organizers/player');
 const pickedorg = require ('./organizers/picked');
-const themeorg = require ('./organizers/theme');
+const themelistorg = require ('./organizers/themelist');
+const playerlistorg = require ('./organizers/playerlist');
+
 
 
 // Build
@@ -62,10 +64,11 @@ app.use('/bg/:id', deleteBGRoute);
 
 app.use('/bg/sort/', sortBGorg);
 app.use('/bg/mostcount/', mostcountBGorg);
-app.use('/winner/', winnerorg);
-app.use('/player/', playerorg);
-app.use('/picked/', pickedorg);
-app.use('/bg/theme/', themeorg);
+app.use('/bg/winner/', winnerorg);
+app.use('/bg/player/', playerorg);
+app.use('/bg/picked/', pickedorg);
+app.use('/bg/themelist/', themelistorg);
+app.use('/bg/playerlist/', playerlistorg);
 
 //listen for PORT
 

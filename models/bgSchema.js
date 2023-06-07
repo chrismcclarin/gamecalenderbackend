@@ -60,6 +60,6 @@ const BGSchema = new mongoose.Schema({
     Length: Number,
 }, { timestamps: true });
 
-const bg = mongoose.model('boardgametests', BGSchema);
+const bg = mongoose.model('bgs', BGSchema);
 
 module.exports = bg
